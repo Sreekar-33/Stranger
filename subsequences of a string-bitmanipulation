@@ -1,0 +1,22 @@
+Time complexity : O(n*n*len(str))
+Space complexity : O(1)
+
+import java.util.ArrayList;
+
+class Solution {
+    public static ArrayList<String> subsequences(String str) {
+        ArrayList<String> al=new ArrayList<>();
+		for(int i=0;i<(1<<(str.length()));i++)
+		{ 
+			  String s="";
+			for(int j=0;j<str.length();j++)
+			{
+				if(((i>>j) & 1)==1)
+					s+=str.charAt(j);
+			}
+			al.add(s);
+		}
+		
+		return al;
+    }
+}
