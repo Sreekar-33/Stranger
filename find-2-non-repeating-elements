@@ -1,0 +1,51 @@
+
+//using bit manipulation to find the 2 non repeating elements
+Time complexity: O(n)
+Space Complexity: O(1)
+
+import java.util.*;
+public class Main
+{
+    public static int setPos(int n)
+    {
+        int i=1;
+        while(n>0)
+        {
+            
+            if((n&1)==1)
+              break;
+            n=n>>1;
+            i++;
+        }
+        return i;
+        
+    }
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();
+	int xor=0;
+	int a[]=new int[n];
+	for(int i=0;i<n;i++)
+	{
+	    a[i]=sc.nextInt();
+	    xor^=a[i];
+	}
+	int nd2_xor=xor;
+	
+	int pos=setPos(xor);
+	System.out.println("pos ; "+pos);
+	int mask=1<<(pos-1);   
+	System.out.println("mask ; "+mask);
+	for(int i=0;i<n;i++)
+	{
+	    if((a[i] & mask)>0)
+	      xor^=a[i];
+	   
+	}
+
+	System.out.println("The elements are :");
+	System.out.println(xor);
+	System.out.println((xor ^ nd2_xor));
+	
+	}
+}
